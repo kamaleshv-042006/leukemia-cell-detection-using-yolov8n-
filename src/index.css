@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================ base tokens === */
+@layer base {
+  :root {
+    color-scheme: dark;
+    --aq-surface: #0f1317;
+    --aq-surface-2: #12171c;
+    --aq-line: #222a33;
+    --aq-line-soft: #1a2128;
+    --aq-accent: #2d7ff9;
+    --aq-grid: rgba(255, 255, 255, 0.045);
+  }
+
+  * {
+    border-color: var(--aq-line);
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-base-900 text-ink font-sans antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-semibold text-ink;
+    letter-spacing: -0.01em;
+  }
+
+  /* focus ring — consistent across the whole app */
+  :focus-visible {
+    outline: 2px solid var(--aq-accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  ::selection {
+    background: rgba(45, 127, 249, 0.32);
+    color: #fff;
+  }
+
+  /* numeric alignment for metric / table values */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* =============================================================== scrollbar === */
+@layer utilities {
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #2a333d transparent;
+  }
+  .scroll-thin::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  .scroll-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scroll-thin::-webkit-scrollbar-thumb {
+    background-color: #262f39;
+    border-radius: 99px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  .scroll-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #35414e;
+  }
+}
+
+/* ============================================================= components === */
+@layer components {
+  /* faint engineering grid used behind the image viewer stage */
+  .aq-grid-bg {
+    background-image:
+      linear-gradient(var(--aq-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--aq-grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .aq-checker {
+    background-image:
+      linear-gradient(45deg, #0c1013 25%, transparent 25%),
+      linear-gradient(-45deg, #0c1013 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #0c1013 75%),
+      linear-gradient(-45deg, transparent 75%, #0c1013 75%);
+    background-size: 16px 16px;
+    background-position:
+      0 0,
+      0 8px,
+      8px -8px,
+      -8px 0;
+  }
+
+  /* loading skeleton sweep */
+  .aq-skeleton {
+    @apply relative overflow-hidden bg-base-700;
+  }
+  .aq-skeleton::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.045),
+      transparent
+    );
+  }
+
+  .aq-hairline {
+    @apply border-line-soft;
+  }
+}
+
+/* ============================================================ cell background === */
+.cell-wash {
+  background:
+    radial-gradient(1100px 700px at 12% -8%, rgba(45, 127, 249, 0.16), transparent 62%),
+    radial-gradient(900px 620px at 92% 108%, rgba(43, 182, 196, 0.12), transparent 60%),
+    radial-gradient(700px 500px at 55% 45%, rgba(139, 123, 232, 0.07), transparent 70%);
+}
+
+.cell-canvas {
+  display: block;
+}
+
+/* ============================================================== recharts === */
+.recharts-surface {
+  overflow: visible;
+}
+.recharts-cartesian-axis-tick-value {
+  font-size: 11px;
+  fill: #68757f;
+}
+.recharts-cartesian-grid line {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+.recharts-legend-item-text {
+  color: #9aa9b8 !important;
+  font-size: 12px;
+}
+.recharts-tooltip-wrapper:focus-visible {
+  outline: none;
+}
+.recharts-sector:focus,
+.recharts-rectangle:focus,
+.recharts-layer:focus {
+  outline: none;
+}

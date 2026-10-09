@@ -1,0 +1,35 @@
+{
+  "name": "a-qalcd",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A-QALCD - Adaptive Quality-Aware and Explainable Leukemia Cell Detection and Classification System",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "generate:sample": "node scripts/generate-sample-image.mjs",
+    "check:scale": "node scripts/check-scale.mjs",
+    "check:imports": "node scripts/audit.mjs",
+    "smoke": "vite build --config vite.smoke.config.js && node scripts/run-smoke.mjs",
+    "smoke:interactions": "vite build --config vite.smoke.config.js --ssr ../scripts/audit-interactions.jsx && node scripts/run-smoke.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "recharts": "^2.15.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "jpeg-js": "^0.4.4",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.4.11"
+  }
+}
